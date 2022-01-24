@@ -6,14 +6,10 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:51:41 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/01/24 16:06:59 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/01/24 21:47:06 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "ft_printf.h"
 
 static int	ft_filter(va_list *arg, char c, int i)
@@ -23,20 +19,18 @@ static int	ft_filter(va_list *arg, char c, int i)
 	else if (c == 's')
 		i += ft_putstr(va_arg(*arg, char *));
 	else if (c == 'p')
-	{
-		i += ft_putp(va_arg(*arg, unsigned long int));
-	}
+		i += ft_putp(va_arg(*arg, unsigned long long int));
 	else if (c == 'd' || c == 'i' || c == 'u')
 	{
 		if (c == 'd' || c == 'i')
-			i += ft_putnbr_base(va_arg(*arg, int), "0123456789");
+			i += ft_putnbr_d(va_arg(*arg, int), "0123456789");
 		else
-			i += ft_putuns(va_arg(*arg, unsigned long long int));
+			i += ft_putuns(va_arg(*arg, unsigned int));
 	}
 	else if (c == 'x')
-		i += ft_putnbr_base(va_arg(*arg, long long int), "0123456789abcdef");
+		i += ft_putnbr_base(va_arg(*arg, unsigned int), "0123456789abcdef");
 	else if (c == 'X')
-		i += ft_putnbr_base(va_arg(*arg, long long int), "0123456789ABCDEF");
+		i += ft_putnbr_base(va_arg(*arg, unsigned int), "0123456789ABCDEF");
 	else if (c == '%')
 		i += ft_putchar('%');
 	return (i);
@@ -69,19 +63,20 @@ int	ft_printf(const char *format, ...)
 	return (re);
 }
 
+/*
 int	main(void)
 {
 	int		re1;
 	int		re2;
 	void	*p;
 
-	p = 0;
-	re1 = ft_printf("pollo $%c$ pollo\n", 'p');
-	re2 = printf("pollo $%c$ pollo\n", 'p');
+	re1 = ft_printf("$%d$\n", -1);
+	re2 = printf("$%d$\n", -1);
 	printf("ft_printf: %d\nprintf: %d\n", re1, re2);
 	printf("------------------------------------\n");
-	re1 = ft_printf("pollo $%s$ pollo\n", "culo");
-	re2 = printf("pollo $%s$ pollo\n", "culo");
+
+	re1 = ft_printf("$%i$\n", -10);
+	re2 = printf("$%i$\n", -10);
 	printf("ft_printf: %d\nprintf: %d\n", re1, re2);
 	printf("------------------------------------\n");
 	re1 = ft_printf("pollo $%d$ pollo\n", 12);
@@ -92,9 +87,9 @@ int	main(void)
 	re2 = printf("pollo $%i$ pollo\n", -12);
 	printf("ft_printf: %d\nprintf: %d\n", re1, re2);
 	printf("------------------------------------\n");
-	re1 = ft_printf("pollo $%u$ pollo\n", 12);
-	re2 = printf("pollo $%u$ pollo\n", 12);
-	printf("ft_printf: %d\nprintf: %d\n", re1, re2);
+	re1 = ft_printf("$%u$\n", 4294967295);
+	re2 = printf("$%d$\n");
+	//printf("ft_printf: %d\nprintf: %d\n", re1, re2);
 	printf("------------------------------------\n");
 	re1 = ft_printf("pollo $%%$ pollo\n");
 	re2 = printf("pollo $%%$ pollo\n");
@@ -113,3 +108,4 @@ int	main(void)
 	printf("ft_printf: %d\nprintf: %d\n", re1, re2);
 	printf("------------------------------------\n");
 }
+*/
