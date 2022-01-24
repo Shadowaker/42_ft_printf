@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:51:41 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/01/23 22:50:11 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/01/24 16:06:59 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int	ft_filter(va_list *arg, char c, int i)
 	else if (c == 'p')
 	{
 		i += ft_putp(va_arg(*arg, unsigned long int));
-		i += 2;
 	}
 	else if (c == 'd' || c == 'i' || c == 'u')
 	{
@@ -40,7 +39,7 @@ static int	ft_filter(va_list *arg, char c, int i)
 		i += ft_putnbr_base(va_arg(*arg, long long int), "0123456789ABCDEF");
 	else if (c == '%')
 		i += ft_putchar('%');
-	return (i - 2);
+	return (i);
 }
 
 int	ft_printf(const char *format, ...)
@@ -56,14 +55,16 @@ int	ft_printf(const char *format, ...)
 	{
 		if ('%' == ((char *) format)[i])
 		{
-			re += ft_filter(&arg, ((char *) format)[i + 1], re);
+			re = ft_filter(&arg, ((char *) format)[i + 1], re);
 			i++;
 		}
 		else
+		{
 			ft_putchar(format[i]);
+			re++;
+		}
 		i++;
 	}
-	re += i;
 	va_end(arg);
 	return (re);
 }
@@ -74,6 +75,7 @@ int	main(void)
 	int		re2;
 	void	*p;
 
+	p = 0;
 	re1 = ft_printf("pollo $%c$ pollo\n", 'p');
 	re2 = printf("pollo $%c$ pollo\n", 'p');
 	printf("ft_printf: %d\nprintf: %d\n", re1, re2);
@@ -82,16 +84,16 @@ int	main(void)
 	re2 = printf("pollo $%s$ pollo\n", "culo");
 	printf("ft_printf: %d\nprintf: %d\n", re1, re2);
 	printf("------------------------------------\n");
-	re1 = ft_printf("pollo $%d$ pollo\n", 1);
-	re2 = printf("pollo $%d$ pollo\n", 1);
+	re1 = ft_printf("pollo $%d$ pollo\n", 12);
+	re2 = printf("pollo $%d$ pollo\n", 12);
 	printf("ft_printf: %d\nprintf: %d\n", re1, re2);
 	printf("------------------------------------\n");
-	re1 = ft_printf("pollo $%i$ pollo\n", -1);
-	re2 = printf("pollo $%i$ pollo\n", -1);
+	re1 = ft_printf("pollo $%i$ pollo\n", -12);
+	re2 = printf("pollo $%i$ pollo\n", -12);
 	printf("ft_printf: %d\nprintf: %d\n", re1, re2);
 	printf("------------------------------------\n");
-	re1 = ft_printf("pollo $%u$ pollo\n", 1);
-	re2 = printf("pollo $%u$ pollo\n", 1);
+	re1 = ft_printf("pollo $%u$ pollo\n", 12);
+	re2 = printf("pollo $%u$ pollo\n", 12);
 	printf("ft_printf: %d\nprintf: %d\n", re1, re2);
 	printf("------------------------------------\n");
 	re1 = ft_printf("pollo $%%$ pollo\n");
