@@ -6,15 +6,11 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 16:49:43 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/01/24 21:45:26 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/01/25 10:46:57 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// include
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include "ft_printf.h"
+#include "../incl/ft_printf.h"
 
 int	ft_putchar(char c)
 {

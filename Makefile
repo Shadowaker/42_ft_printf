@@ -6,19 +6,19 @@
 #    By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/24 16:33:24 by dridolfo          #+#    #+#              #
-#    Updated: 2022/01/24 17:52:16 by dridolfo         ###   ########.fr        #
+#    Updated: 2022/01/25 10:46:09 by dridolfo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ./libftprintf.a
 
-SRC = srcs/ft_printf.c \
+SRC = ./ft_printf.c \
 srcs/ft_num_utils.c \
 srcs/ft_printf_utils.c \
 
 OBJS = $(SRC:.c=.o)
 
-HDRS = include/ft_printf.h
+HDRS = incl/ft_printf.h
 
 RM = rm -f
 
