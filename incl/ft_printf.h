@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 18:54:10 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/01/24 21:46:33 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/01/25 12:22:09 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		ft_putstr(char *s);
 int		ft_strlen(char *s);
 int		ft_len_num(long long int n);
 int		ft_putnbr_base(unsigned long long int n, char *base);
+int		ft_putint(int nbr);
 int		ft_putuns(unsigned int n);
 int		ft_putp(unsigned long long int n);
 void	ft_putnbr(unsigned long long int n, char *base,
